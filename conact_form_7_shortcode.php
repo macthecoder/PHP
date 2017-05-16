@@ -6,6 +6,8 @@ NOTE: You must follow this sequence.Oherwise you will face error which leads no 
 NOTE: You must follow this sequence.Oherwise you will face error which leads no output.
 [submit class:first_custom_class class:second_custom_class class:third_custom_class "Button Label"]
 NOTE: You must follow this sequence.Oherwise you will face error which leads no output.
+
+Do not enter break befor and after your input field. It will generate br tag in html.
 */
 /*
 <div class="features-content">
