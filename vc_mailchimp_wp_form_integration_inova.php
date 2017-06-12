@@ -5,11 +5,11 @@ Startup Slider Hero Mailchimp Subscriber form
 ?>
 <div class="mailchimp">
 	<div class="subcribe">
-      <input type="email" name="EMAIL" id="reg_email" class="form-control memail" placeholder="Enter your email...">
-      <label>
-        <button class="btn sub_btn sub_btn-two" type="submit">subscribe</button>
-      </label>
-  	</div>
+	      <input type="email" name="EMAIL" id="reg_email" class="form-control memail" placeholder="Enter your email...">
+	      <label>
+		<button class="btn sub_btn sub_btn-two" type="submit">subscribe</button>
+	      </label>
+	</div>
 </div>
 
 
