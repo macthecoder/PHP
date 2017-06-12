@@ -4,12 +4,12 @@ Startup Slider Hero Mailchimp Subscriber form
 */
 ?>
 <div class="mailchimp">
-	<div class="subcribe">
-	      <input type="email" name="EMAIL" id="reg_email" class="form-control memail" placeholder="Enter your email...">
-	      <label>
-		<button class="btn sub_btn sub_btn-two" type="submit">subscribe</button>
-	      </label>
-	</div>
+  <div class="subcribe">
+    <input type="email" name="EMAIL" id="reg_email" class="form-control memail" placeholder="Enter your email...">
+    <label>
+      <button class="btn sub_btn sub_btn-two" type="submit">subscribe</button>
+    </label>
+  </div>
 </div>
 
 <?php
@@ -17,19 +17,22 @@ Startup Slider Hero Mailchimp Subscriber form
 Startup Video Hero Mailchimp Subscriber form
 */
 ?>
-<div  class="mailchimp-subscribe">
-  <div class="form-group">
-    <input type="text" name="FNAME" class="form-control mcfname" id="reg_fname" placeholder="First Name">
+<div class="subcribe-form">
+	<h4>Subscription Form</h4>
+	<p>Nemo enim voluptatem quia voluptas</p>
+  <div  class="mailchimp-subscribe">
+    <div class="form-group">
+      <input type="text" name="FNAME" class="form-control mcfname" id="reg_fname" placeholder="First Name">
+    </div>
+    <div class="form-group">
+      <input type="text" name="LNAME" class="form-control mclname" id="reg_lname" placeholder="Last Name">
+    </div>
+    <div class="form-group">
+      <input type="email" name="EMAIL" class="form-control mcemail" id="reg_first" placeholder="Email">
+    </div>
+    <button type="submit" value="subcribe" class="btn sub_btn">Subscribe Now</button>
   </div>
-  <div class="form-group">
-    <input type="text" name="LNAME" class="form-control mclname" id="reg_lname" placeholder="Last Name">
-  </div>
-  <div class="form-group">
-    <input type="email" name="EMAIL" class="form-control mcemail" id="reg_first" placeholder="Email">
-  </div>
-  <button type="submit" value="subcribe" class="btn sub_btn">Subscribe Now</button>
 </div>
-
 
 <?php
 /*
@@ -111,6 +114,8 @@ Saas Hero Mailchimp Subscriber form
 */
 ?>
 <div class="subcribe-form">
+	<h4>Subscription Form</h4>
+	<p>Nemo enim voluptatem quia voluptas</p>
   <div  class="mailchimp-subscribe">
     <div class="form-group">
       <input type="text" name="FNAME" class="form-control mcfname" id="reg_fname" placeholder="First Name">
