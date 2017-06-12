@@ -12,6 +12,24 @@ Startup Slider Hero Mailchimp Subscriber form
 	</div>
 </div>
 
+<?php
+/*
+Startup Video Hero Mailchimp Subscriber form
+*/
+?>
+<div  class="mailchimp-subscribe">
+  <div class="form-group">
+    <input type="text" name="FNAME" class="form-control mcfname" id="reg_fname" placeholder="First Name">
+  </div>
+  <div class="form-group">
+    <input type="text" name="LNAME" class="form-control mclname" id="reg_lname" placeholder="Last Name">
+  </div>
+  <div class="form-group">
+    <input type="email" name="EMAIL" class="form-control mcemail" id="reg_first" placeholder="Email">
+  </div>
+  <button type="submit" value="subcribe" class="btn sub_btn">Subscribe Now</button>
+</div>
+
 
 <?php
 /*
@@ -69,9 +87,40 @@ Saas Hero Mailchimp Subscriber form
 */
 ?>
 <div class="input-group subcribes-saas">
-  <input type="email" name="email" class="form-control memail" placeholder="Enter your email">
+  <input type="email" name="EMAIL" class="form-control memail" placeholder="Enter your email">
   <span class="input-group-btn">
     <button class="btn btn-default btn-submit" type="submit">subscribe</button>
   </span>
 </div>
 
+<?php
+/*
+(To Use Single Individually) E-Book Page Subscriber Form
+*/
+?>
+<div class="ebook-subscribe">
+  <input type="email" name="EMAIL" class="form-control memail" placeholder="Enter your email">
+  <button class="btn btn-default sub_btn sub_btn-two" type="submit">Subscribe</button>
+</div>
+
+
+
+<?php
+/*
+(To Use Single Individually) Startup Video(Hero) Page Subscriber Form
+*/
+?>
+<div class="subcribe-form">
+  <div  class="mailchimp-subscribe">
+    <div class="form-group">
+      <input type="text" name="FNAME" class="form-control mcfname" id="reg_fname" placeholder="First Name">
+    </div>
+    <div class="form-group">
+      <input type="text" name="LNAME" class="form-control mclname" id="reg_lname" placeholder="Last Name">
+    </div>
+    <div class="form-group">
+      <input type="email" name="EMAIL" class="form-control mcemail" id="reg_first" placeholder="Email">
+    </div>
+    <button type="submit" value="subcribe" class="btn sub_btn">Subscribe Now</button>
+  </div>
+</div>
