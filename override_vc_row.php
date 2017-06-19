@@ -1,6 +1,6 @@
 <?
 /* This is the basic example of override Visual Composer's row element for our theme. Here I am going to demostrate the up and running about it.
-First: create a file with any any name related to your work (name.php) and within it call vc_add_params() or vc_add_param() function within
+First: create a file with any any name related to your work (shortcode_name.php) and within it call vc_add_params() or vc_add_param() function within
 'vc_after_init' hook. Here is the example:
 */
 add_action('vc_after_init',
@@ -170,55 +170,7 @@ if (!empty($atts['gap'])) {
     $css_classes[] = 'vc_column-gap-' . $atts['gap'];
 }
 
-if (!empty($atts['is_row_overlay'] && $atts['is_row_overlay'] == 'overlay')) {
-    if (!empty($atts['row_overlay_type'] && $atts['row_overlay_type'] == 'gradient')) {
-        echo '
-        <style>
-            .overlay_gradient::before {
-                background-image: -moz-linear-gradient(-15deg, '.$atts['row_overlay_primary_gradient'].' 0%, '.$atts['row_overlay_secondary_gradient'].' 100%);
-                background-image: -webkit-linear-gradient(-15deg, '.$atts['row_overlay_primary_gradient'].' 0%, '.$atts['row_overlay_secondary_gradient'].' 100%);
-                background-image: -ms-linear-gradient(-15deg, '.$atts['row_overlay_primary_gradient'].' 0%, '.$atts['row_overlay_secondary_gradient'].' 100%);
-                content: "";
-                display: block;
-                height: 100%;
-                left: 0;
-                opacity: 0.5;
-                position: absolute;
-                top: 0;
-                width: 100%;
-                z-index: 0;
-            }
-            .overlay_gradient{
-            z-index: 1;
-            position: relative;
-            }
-        </style>
-        ';
-        $css_classes[] = 'overlay_gradient';
-    }else if (!empty($atts['row_overlay_type'] && $atts['row_overlay_type'] == 'solid')){
-        echo '
-        <style>
-            .overlay_solid::before {
-                background: '.$atts['row_overlay_solid'].' none repeat scroll 0 0!important;
-                content: "";
-                display: block;
-                height: 100%;
-                left: 0;
-                opacity: 0.5;
-                position: absolute;
-                top: 0;
-                width: 100%;
-                z-index: 0;
-            }
-            .overlay_solid{
-            z-index: 1;
-            position: relative;
-            }
-        </style>
-        ';
-        $css_classes[] = 'overlay_solid';
-    }
-}
+
 
 $wrapper_attributes = array();
 // build attributes for wrapper
@@ -273,6 +225,7 @@ if ($has_video_bg) {
     wp_enqueue_script('vc_youtube_iframe_api_js');
 }
 
+
 if (!empty($parallax)) {
     wp_enqueue_script('vc_jquery_skrollr_js');
     $wrapper_attributes[] = 'data-vc-parallax="' . esc_attr($parallax_speed) . '"'; // parallax speed
@@ -284,6 +237,42 @@ if (!empty($parallax)) {
         $css_classes[] = 'js-vc_parallax-o-fixed';
     }
 }
+if (!empty($atts['is_row_overlay'] && $atts['is_row_overlay'] == 'overlay')) {
+    //$overlay_class = 'row_'.$css_class;
+
+    $primary = $atts['row_overlay_primary_gradient'];
+    $secondary = $atts['row_overlay_secondary_gradient'];
+    $solid = $atts['row_overlay_solid'];
+    $opacity = $atts['row_overlay_opacity'];
+    $overlay_class = inova_removing_first_character(crc32(strtolower($primary.$secondary.$solid.$opacity)));
+
+    if (!empty($atts['row_overlay_type']) && $atts['row_overlay_type'] == 'gradient') {
+        $bg = "-moz-linear-gradient(-15deg, " . esc_attr($primary) . " 0%, " . esc_attr($secondary) . " 100%); background-image: -webkit-linear-gradient(-15deg,  " . esc_attr($primary) . " 0%, " . esc_attr($secondary) . " 100%); background-image: -ms-linear-gradient(-15deg,  " . esc_attr($primary) . " 0%, " . esc_attr($secondary) . " 100%);";
+    } else {
+        $bg = "" . esc_attr($solid) . " none repeat scroll 0 0!important";
+    }
+    echo '
+        <style>
+            .row_'.$overlay_class.'::before {
+                background-image: '.$bg.'
+                content: "";
+                display: block;
+                height: 100%;
+                left: 0;
+                opacity: '.$opacity.';
+                position: absolute;
+                top: 0;
+                width: 100%;
+                z-index: 0!important;
+            }
+            .row_'.$overlay_class.'{
+            z-index: 1;
+            position: relative;
+            }
+        </style>
+        ';
+    $css_classes[] = 'row_'.$overlay_class;
+}
 
 if (!empty($parallax_image)) {
     if ($has_video_bg) {
@@ -293,33 +282,42 @@ if (!empty($parallax_image)) {
         $parallax_image_src = wp_get_attachment_image_src($parallax_image_id, 'full');
         if (!empty($parallax_image_src[0])) {
             $parallax_image_src = $parallax_image_src[0];
+            if (!empty($atts['is_row_overlay'] && $atts['is_row_overlay'] == 'overlay')) {
+                if (!empty($atts['row_overlay_type'] && $atts['row_overlay_type'] == 'gradient')) {
+                    echo '
+        <style>
+            .row_'.$overlay_class.'::before {
+                z-index: 1!important;
+            }
+            .row_'.$overlay_class.'{
+            z-index: 1;
+            position: relative;
+            }
+        </style>
+        ';
+                }else if (!empty($atts['row_overlay_type'] && $atts['row_overlay_type'] == 'solid')){
+                    echo '
+        <style>
+            .row_'.$overlay_class.'::before {
+                z-index: 1!important;
+            }
+            .row_'.$overlay_class.'{
+            z-index: 1;
+            position: relative;
+            }
+        </style>
+        ';
+                }
+            }
         }
     }
     $wrapper_attributes[] = 'data-vc-parallax-image="' . esc_attr($parallax_image_src) . '"';
-    if (!empty($atts['is_row_overlay'] && $atts['is_row_overlay'] == 'overlay')) {
-        if (!empty($atts['row_overlay_type'] && $atts['row_overlay_type'] == 'gradient')) {
-            echo '
-        <style>
-            .overlay_gradient::before {
-                z-index: 1;
-            }
-        </style>
-        ';
-        }else if (!empty($atts['row_overlay_type'] && $atts['row_overlay_type'] == 'solid')){
-            echo '
-        <style>
-            .overlay_solid::before {
-                z-index: 1;
-            }
-        </style>
-        ';
-        }
-    }
 }
 if (!$parallax && $has_video_bg) {
     $wrapper_attributes[] = 'data-vc-video-bg="' . esc_attr($video_bg_url) . '"';
 }
 $css_class = preg_replace('/\s+/', ' ', apply_filters(VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, implode(' ', array_filter(array_unique($css_classes))), $this->settings['base'], $atts));
+
 $wrapper_attributes[] = 'class="' . esc_attr(trim($css_class)) . '"';
 
 $output .= '<div ' . implode(' ', $wrapper_attributes) . '>';
@@ -328,4 +326,3 @@ $output .= '</div>';
 $output .= $after_output;
 
 echo $output;
-
